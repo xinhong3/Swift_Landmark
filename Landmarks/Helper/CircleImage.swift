@@ -19,7 +19,3 @@ struct CircleImage: View {
             .shadow(radius: 7)
     }
 }
-
-#Preview {
-    CircleImage(image: landmarks[0].image)
-}
