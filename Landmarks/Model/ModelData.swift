@@ -11,6 +11,24 @@ import Foundation
 class ModelData {
     var landmarks: [Landmark] = load("landmarkData")
     var hikes: [Hike] = load("hikeData")
+    
+    // Computed property. This is will be updated with landmarks.
+    var featured: [Landmark] {
+        landmarks.filter{$0.isFeatured}
+    }
+    
+    var categories: [String: [Landmark]] {
+        let categories = Dictionary(
+            grouping: landmarks, by: {$0.category.rawValue}
+        )
+
+        for (category, landmarks) in categories {
+            let names = landmarks.map { $0.name }
+            print("Category: \(category), Landmarks: \(names)")
+        }
+        
+        return categories
+    }
 }
 
 var LANDMARKS : [Landmark] = load("landmarkData")
