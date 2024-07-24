@@ -10,6 +10,8 @@ import SwiftUI
 struct CategoryHome: View {
     @Environment(ModelData.self) var modelData
     
+    @State private var showingProfile = false
+    
     var navigationTitle = "Featured"
         
     var body: some View{
@@ -29,11 +31,22 @@ struct CategoryHome: View {
                     } else {
                         Text("No items for category \(categoryName)")
                     }
-//                    CategoryRow(categoryName: categoryName, items: modelData.categories[categoryName]!)
                 }
                 .listRowInsets(EdgeInsets())
-                .navigationTitle(navigationTitle)
             }
+            .navigationTitle(navigationTitle)
+            .toolbar{
+                Button{
+                    showingProfile.toggle()
+                } label: {
+                    Label("User Profile", systemImage: "person.crop.circle")
+                }
+            }
+            .sheet(isPresented: $showingProfile, content: {
+                ProfileHost()
+                    .environment(modelData)
+            })
+
         } detail: {
             Text("placeholder")
         }

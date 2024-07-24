@@ -11,6 +11,7 @@ import Foundation
 class ModelData {
     var landmarks: [Landmark] = load("landmarkData")
     var hikes: [Hike] = load("hikeData")
+    var profile: Profile = Profile.default
     
     // Computed property. This is will be updated with landmarks.
     var featured: [Landmark] {
